@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+    <body>
+        
+            <h:form>
+            <rich:toolBar height="34" itemSeparator="line"> 
+                <rich:toolBarGroup >
+                    
+                    <h:graphicImage id="visual" value="/img/detalhe.png"  /> 
+                    <h:commandButton  action="visualizarAvon" value="Visualizar">
+                        <!--<h:outputLabel value="Visualizar" for="visual" /> -->
+                    </h:commandButton> 
+                </rich:toolBarGroup>
+                <rich:toolBarGroup>       
+                    <h:graphicImage id="edit" value="/img/editar.png" />
+                    <h:commandButton action="editarAvon">
+                        <!--<h:outputLabel value="Editar" for="edit" /> -->  
+                    </h:commandButton> 
+                </rich:toolBarGroup>                              
+                <rich:toolBarGroup>                    
+                    <h:graphicImage id="salvar" value="/img/salvar.gif" />
+                    <h:commandButton action="#{avonManager.atualizarAvon}" onclick="javascript:if (!confirm('Deseja salvar estas alteracoes??')) return false;">                         
+                        <!--<h:outputLabel value="Salvar" for="salvar" />  -->                        
+                    </h:commandButton>     
+                    
+                </rich:toolBarGroup>
+                <rich:toolBarGroup>
+                    <h:graphicImage id="apagar" value="/img/excluir.png" />                    
+                    <h:commandLink action="#{avonManager.excluirAvon}" onclick="javascript:if (!confirm('Deseja excluir este registro?')) return false;">                         
+                        <h:outputLabel value="Excluir" for="apagar" />                    
+                        
+                    </h:commandLink>
+                </rich:toolBarGroup>
+                <rich:toolBarGroup>
+                    <h:graphicImage id="imprimir" value="/img/imprimir2.gif" height="25" width="25" />                    
+                    <h:outputLabel value="Imprimir" for="imprimir" />                    
+                    <h:inputText value="#{avonManager.avon.nome}"/>
+                </rich:toolBarGroup>                
+            </rich:toolBar>            
+        </h:form>            
+    </body>
+</html>
+

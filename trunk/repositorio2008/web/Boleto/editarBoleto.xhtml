@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+    <body>
+        <ui:composition template="/Templates/templateCentroCobrador.xhtml">
+            <ui:define name="conteudo">
+                <h:form>
+                    <rich:panel style="width:700px">
+                        <f:facet name="header">Cadastro de instruções para Boleto </f:facet>
+                        <h:panelGrid columns="1">
+                            <h:panelGroup>
+                                Nome do template
+                                <h:inputText value="#{templateBoletoManager.templateBoleto.nometemplate}" />
+                            </h:panelGroup>
+                        </h:panelGrid>
+                        <fieldset>
+                            <legend style="color: blue; font-family: arial, helvetica, serif; font-size: 14px;">Instruções Boleto</legend>
+                            <h:panelGrid columns="1">
+                                <h:panelGroup>
+                                    <rich:dataTable value="#{templateBoletoManager.templateBoleto.instrucoes}" var="instrucoesTemplate">
+                                        <rich:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Descricao"/>
+                                            </f:facet>                                     
+                                            #{instrucoesTemplate.descricao}
+                                        </rich:column>
+                                        <rich:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Frase"/>
+                                            </f:facet>                                     
+                                            #{instrucoesTemplate.frase}
+                                        </rich:column>
+                                        <rich:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Remover"/>
+                                            </f:facet>                                     
+                                            <h:commandLink action="#{templateBoletoManager.excluirIntrucaoTemplateBoleto}"> 
+                                                <h:graphicImage id="excluir" url="/img/excluir.png" border="0" />
+                                                <f:setPropertyActionListener value="#{instrucoesTemplate.id}" target="#{templateBoletoManager.instrucaoTid}" />
+                                                <!--<f:param name="instrucaoTemplateId" value="#{instrucoesTemplate.id}"/>-->
+                                            </h:commandLink> 
+                                        </rich:column>
+                                    </rich:dataTable>
+                                </h:panelGroup>
+                            </h:panelGrid>
+                            <h:outputLink value="#" id="linksit" style="color: blue; font-family: arial, helvetica, serif; font-size: 14px;">                                        
+                                Associar Instrucao                                        
+                                <rich:componentControl for="panelinstrucao" attachTo="linksit" operation="show" event="onclick"/>                                        
+                            </h:outputLink>
+                        </fieldset>
+                        <fieldset>
+                            <legend style="color: blue; font-family: arial, helvetica, serif; font-size: 14px;">Texto Boleto</legend>
+                            <h:panelGrid columns="1">
+                                <h:panelGroup>
+                                    Texto Boleto:<br/>
+                                    <h:inputTextarea cols="50" readonly="true" rows="25" value="#{templateBoletoManager.templateBoleto.textoBoleto.texto}"/>
+                                </h:panelGroup>
+                            </h:panelGrid>
+                            <h:outputLink value="#" id="linktexto" style="color: blue; font-family: arial, helvetica, serif; font-size: 14px;">                                        
+                                Associar Texto                                         
+                                <rich:componentControl for="paneltexto" attachTo="linktexto" operation="show" event="onclick"/>                                        
+                            </h:outputLink>
+                        </fieldset>
+                        <f:subview>
+                            <rich:modalPanel id="panelinstrucao" width="350" height="500">                            
+                                <f:facet name="header">                                
+                                    <h:panelGroup>                                    
+                                        <h:outputText value="Escolha a situacao"></h:outputText>                                    
+                                    </h:panelGroup>                                
+                                </f:facet>                            
+                                <f:facet name="controls">                                
+                                    <h:panelGroup>                                    
+                                        <h:graphicImage value="/img/excluir.png" style="cursor:pointer" id="hidelink"/>                                    
+                                        <rich:componentControl for="panelinstrucao" attachTo="hidelink" operation="hide" event="onclick"/>                                    
+                                    </h:panelGroup>                                
+                                </f:facet>
+                                <rich:dataTable value="#{instrucaoBoletoManager.listarInstrucaoBoleto}" var="instrucao" onRowMouseOver="this.style.backgroundColor='#F1F1F1'"
+                                                onRowMouseOut="this.style.backgroundColor='#{a4jSkin.tableBackgroundColor}'">
+                                    <rich:column>
+                                        <f:facet name="header">
+                                            Descrição
+                                        </f:facet>
+                                        #{instrucao.descricao}
+                                    </rich:column>
+                                    <rich:column>
+                                        <f:facet name="header">
+                                            Frase
+                                        </f:facet>
+                                        #{instrucao.frase}
+                                    </rich:column>
+                                    <rich:column>
+                                        <f:facet name="header">
+                                            Opcoes
+                                        </f:facet>
+                                        <h:commandLink action="#{instrucaoBoletoManager.selecionarInstrucaoBoleto}" > 
+                                            Escolher Instrucao
+                                            <!--<f:param name="situacao" value="#{situacao}"/>-->
+                                        </h:commandLink>
+                                    </rich:column>
+                                </rich:dataTable>
+                            </rich:modalPanel>  
+                        </f:subview>
+                        <f:subview>
+                            <rich:modalPanel id="paneltexto" width="350" height="500">                            
+                                <f:facet name="header">                                
+                                    <h:panelGroup>                                    
+                                        <h:outputText value="Escolha o texto"></h:outputText>                                    
+                                    </h:panelGroup>                                
+                                </f:facet>                            
+                                <f:facet name="controls">                                
+                                    <h:panelGroup>                                    
+                                        <h:graphicImage value="/img/excluir.png" style="cursor:pointer" id="hidelink"/>                                    
+                                        <rich:componentControl for="paneltexto" attachTo="hidelink" operation="hide" event="onclick"/>                                    
+                                    </h:panelGroup>                                
+                                </f:facet>
+                                <rich:dataTable value="#{textoBoletoManager.listarTextoBoleto}" var="texto" onRowMouseOver="this.style.backgroundColor='#F1F1F1'"
+                                                onRowMouseOut="this.style.backgroundColor='#{a4jSkin.tableBackgroundColor}'">
+                                    <rich:column>
+                                        <f:facet name="header">
+                                            Descrição
+                                        </f:facet>
+                                        #{texto.descricao}
+                                    </rich:column>
+                                    <rich:column>
+                                        <f:facet name="header">
+                                            Opcoes
+                                        </f:facet>
+                                        <h:commandLink action="#{textoBoletoManager.selecionarTextoBoleto}" > 
+                                            Escolher Texto                                            
+                                        </h:commandLink>
+                                    </rich:column>
+                                </rich:dataTable>
+                            </rich:modalPanel>  
+                        </f:subview>
+                    </rich:panel>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>
+

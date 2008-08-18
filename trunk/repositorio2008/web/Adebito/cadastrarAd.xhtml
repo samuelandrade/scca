@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+      <body>
+          
+      <h:form>
+          <h2>Ad:</h2>
+          <h:inputText value="#{adManager.ad.avisodebito}" />
+          <h2>Valor do Ad:</h2>
+          <h:inputText value="#{adManager.ad.valordebito}" />
+          <h2>Data:</h2>
+          <h:inputText value="#{adManager.ad.dataad}" />
+          <input type="submit" id="Botao" value="Cadastrar" name="fButton" jsfc="h:commandButton" action="#{adManager.salvarAd}" />
+      </h:form>
+       
+    </body>
+</html>
+

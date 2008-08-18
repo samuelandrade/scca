@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="css/default.css" rel="stylesheet" type="text/css" />
+        <link href="css/cssLayout.css" rel="stylesheet" type="text/css" />
+        <title>Sistema Copal 2</title>
+    </head>
+    
+    <body>
+        <ui:composition template="/Templates/templateGeral.xhtml">
+            <ui:define name="centro">
+            <div id="barra" class="barra" style="margin-bottom:1em;">
+                <ui:insert name="barra">
+                    menu secundario
+                </ui:insert>
+            </div>
+            
+            <div id="conteudo" class="center_content">
+                <ui:insert name="conteudo">
+                    <h:panelGroup>
+                    <ui:include src="/Pagamento/listarPagamento.xhtml"/>
+                    </h:panelGroup>
+                </ui:insert>    
+            </div>
+            </ui:define>
+        </ui:composition>         
+    </body>
+    
+</html>

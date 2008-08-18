@@ -1,0 +1,659 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!-- =========== FULL CONFIGURATION FILE ================================== -->
+<faces-config version="1.2" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd">
+    <application>
+        <view-handler>
+            com.sun.facelets.FaceletViewHandler
+        </view-handler>
+    </application>
+    
+    <managed-bean>
+        <managed-bean-name>avonManager</managed-bean-name>
+        <managed-bean-class>br.com.copal.MB.AvonManager</managed-bean-class>        
+        <managed-bean-scope>session</managed-bean-scope>
+        
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>adManager</managed-bean-name>
+        <managed-bean-class>br.com.copal.MB.AdManager</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>caixaManager</managed-bean-name>
+        <managed-bean-class>br.com.copal.MB.CaixaManager</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>caixaitemManager</managed-bean-name>
+        <managed-bean-class>br.com.copal.MB.CaixaItemManager</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>pagamentoManager</managed-bean-name>
+        <managed-bean-class>br.com.copal.MB.PagamentoManager</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>cobradorManager</managed-bean-name>
+        <managed-bean-class>br.com.copal.MB.CobradorManager</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>caixaitempadraoManager</managed-bean-name>
+        <managed-bean-class>br.com.copal.MB.CaixaItemPadraoManager</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>navegadorPag</managed-bean-name>
+        <managed-bean-class>br.com.copal.util.navegadorPag</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>situacaoManager</managed-bean-name>
+        <managed-bean-class>br.com.copal.MB.SituacaoManager</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>textoBoletoManager</managed-bean-name>
+        <managed-bean-class>br.com.copal.MB.TextoBoletoManager</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>instrucaoBoletoManager</managed-bean-name>
+        <managed-bean-class>br.com.copal.MB.InstrucaoBoletoManager</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>templateBoletoManager</managed-bean-name>
+        <managed-bean-class>br.com.copal.MB.TemplateBoletoManager</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>boletoManager</managed-bean-name>
+        <managed-bean-class>br.com.copal.MB.BoletoManager</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    
+    
+    
+    <!-- Padronização:
+            Nome = A Classe
+            - criarNome    ( link para /nome/cadastrarNome.xhtml )
+            - editarNome  ( /nome/listarNome.xhtml -> /nome/editarNome.xhtml )
+            - listarNome  ( /nome/editarNome.xhtml -> /nome/listarNome.xhtml ) "OK" 
+    -->
+    
+    
+    <!-- Regras de Navegação Ad -->
+    
+    <navigation-rule>
+        <from-view-id>/Adebito/listarAd.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>criarPagamento</from-outcome>
+            <to-view-id>/Pagamento/cadastrarPagamento.xhtml</to-view-id>
+        </navigation-case>
+         <navigation-case>
+            <from-outcome>criarAd</from-outcome>
+            <to-view-id>/Adebito/cadastrarAd.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>editarAd</from-outcome>
+            <to-view-id>/Adebito/editarAd.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/Adebito/cadastrarAd.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>listarAd</from-outcome>
+            <to-view-id>/Adebito/listarAd.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/Adebito/editarAd.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>listarAd</from-outcome>
+            <to-view-id>/Adebito/listarAd.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>   
+    
+    <!-- Regras de Navegação Avon -->
+    
+    <navigation-rule>
+        <from-view-id>/Avon/Listar/listarAvon.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>criarAvon</from-outcome>
+            <to-view-id>/Avon/cadastrarAvon.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>criarAd</from-outcome>
+            <to-view-id>/Adebito/cadastrarAd.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>editarAvon</from-outcome>
+            <to-view-id>/Avon/editarAvon.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>listarAdporAviso</from-outcome>
+            <to-view-id>/Adebito/listarAdporAviso.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>selecionarCobrador</from-outcome>
+            <to-view-id>/Cobrador/selecionarCobrador.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>visualizarAvon</from-outcome>
+            <to-view-id>/Avon/formularioAvon.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/Avon/Listar/*</from-view-id>
+        <navigation-case>
+            <from-outcome>listarAvon</from-outcome>
+            <to-view-id>/Avon/Listar/listarAvon.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/Avon/formularioAvon.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>listarAvon</from-outcome>
+            <to-view-id>/Avon/Listar/listarAvon.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>editarAvon</from-outcome>
+            <to-view-id>/Avon/editarAvon.xhtml</to-view-id>
+        </navigation-case>    
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/Avon/editarAvon.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>listarAvon</from-outcome>
+            <to-view-id>/Avon/Listar/listarAvon.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>visualizarAvon</from-outcome>
+            <to-view-id>/Avon/formularioAvon.xhtml</to-view-id>
+        </navigation-case>        
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/Avon/cadastrarAvon.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>criarAd</from-outcome>
+            <to-view-id>/Adebito/cadastrarAd.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>  
+        <from-view-id>/Avon/Listar/*</from-view-id>
+        <navigation-case>
+            <from-outcome>visualizarAvon</from-outcome>
+            <to-view-id>/Avon/formularioAvon.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    
+    <!-- Regras de Navegação Caixa -->
+    
+    
+    <navigation-rule>
+        <from-view-id>/Caixa/listarCaixa.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>criarCaixa</from-outcome>
+            <to-view-id>/Caixa/cadastrarCaixa.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>criarCaixaItem</from-outcome>
+            <to-view-id>/CaixaItem/cadastrarCaixaItem.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>editarCaixa</from-outcome>
+            <to-view-id>/Caixa/editarCaixa.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>listarCaixaItemporCaixa</from-outcome>
+            <to-view-id>/Caixa/formularioCaixa.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/Caixa/cadastrarCaixa.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>listarCaixa</from-outcome>
+            <to-view-id>/Caixa/listarCaixa.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/Caixa/editarCaixa.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>listarCaixa</from-outcome>
+            <to-view-id>/Caixa/listarCaixa.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    
+    <!-- Regras de Navegação CaixaItem -->
+    
+    
+    <navigation-rule>
+        <from-view-id>/CaixaItem/listarCaixaItem.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>criarCaixaItem</from-outcome>
+            <to-view-id>/CaixaItem/cadastrarCaixaItem.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>editarCaixaItem</from-outcome>
+            <to-view-id>/CaixaItem/editarCaixaItem.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/CaixaItem/listarCaixaItemporCaixa.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>criarCaixaItem</from-outcome>
+            <to-view-id>/CaixaItem/cadastrarCaixaItem.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>editarCaixaItem</from-outcome>
+            <to-view-id>/CaixaItem/editarCaixaItem.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/CaixaItem/cadastrarCaixaItem.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>listarCaixaItem</from-outcome>
+            <to-view-id>/CaixaItem/listarCaixaItemporCaixa.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/CaixaItem/editarCaixaItem.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>listarCaixaItem</from-outcome>
+            <to-view-id>/CaixaItem/listarCaixaItem.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    
+    <!-- Regras de Navegação Cobrador -->
+    
+    
+    <navigation-rule>
+        <from-view-id>/Cobrador/listarCobrador.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>criarCobrador</from-outcome>
+            <to-view-id>/Cobrador/cadastrarCobrador.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>listarAvonporCobrador</from-outcome>
+            <to-view-id>/Avon/listarAvonporCobrador.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/Cobrador/listarCobrador.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>editarCobrador</from-outcome>
+            <to-view-id>/Cobrador/editarCobrador.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/Cobrador/cadastrarCobrador.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>listarCobrador</from-outcome>
+            <to-view-id>/Cobrador/listarCobrador.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/Cobrador/editarCobrador.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>listarCobrador</from-outcome>
+            <to-view-id>/Cobrador/listarCobrador.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/Cobrador/selecionarCobrador.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>listarAvon</from-outcome>
+            <to-view-id>/Avon/Listar/listarAvon.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/Cobrador/Listar/listarAvisosCobrador.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>visualizarAvon</from-outcome>
+            <to-view-id>/Avon/formularioIraja.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>mudarStatusAvon</from-outcome>
+            <to-view-id>/Cobrador/Listar/listarAvisosCobrador.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <!-- Regras de Navegação Pagamento -->
+    
+    
+    <navigation-rule>
+        <from-view-id>/Pagamento/listarPagamento.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>criarPagamento</from-outcome>
+            <to-view-id>/Pagamento/cadastrarPagamento.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>editarPagamento</from-outcome>
+            <to-view-id>/Pagamento/editarPagamento.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    
+    <navigation-rule>
+        <from-view-id>/Pagamento/cadastrarPagamento.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>listarPagamento</from-outcome>
+            <to-view-id>/Pagamento/listarPagamento.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/Avon/formularioAvon.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>criarPagamento</from-outcome>
+            <to-view-id>/Pagamento/cadastrarPagamento.xhtml</to-view-id>
+        </navigation-case>        
+    </navigation-rule>  
+    
+    <navigation-rule>
+        <from-view-id>/Pagamento/editarPagamento.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>listarPagamento</from-outcome>
+            <to-view-id>/Pagamento/listarPagamento.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <!-- Regras de Navegação Pagamento -->
+    
+    <navigation-rule>
+        <from-view-id>/Upload/atualizarBase.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>uploadConcluido</from-outcome>
+            <to-view-id>/Avon/Listar/listarAvon.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <!-- Regras de Navegação CaixaItemPadrao -->
+    
+    <navigation-rule>
+        <from-view-id>/CaixaItemPadrao/cadastrarCaixaItemPadrao.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>listarCaixaItemPadrao</from-outcome>
+            <to-view-id>/CaixaItemPadrao/listarCaixaItemPadrao.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+     <navigation-rule>
+        <from-view-id>/CaixaItemPadrao/listarCaixaItemPadrao.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>listarCaixaItem</from-outcome>
+            <to-view-id>/CaixaItem/listarCaixaItem.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <!-- Regras de Navegação Situacao -->
+    
+    
+    <navigation-rule>
+        <from-view-id>/Situacao/listarSituacao.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>criarSituacao</from-outcome>
+            <to-view-id>/Situacao/cadastrarSituacao.xhtml</to-view-id>
+        </navigation-case>        
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/Situacao/listarSituacao.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>editarSituacao</from-outcome>
+            <to-view-id>/Situacao/editarSituacao.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/Situacao/cadastrarSituacao.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>listarSituacao</from-outcome>
+            <to-view-id>/Situacao/listarSituacao.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/Situacao/editarSituacao.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>listarSituacao</from-outcome>
+            <to-view-id>/Situacao/listarSituacao.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/Situacao/selecionarSituacao.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>listarAvon</from-outcome>
+            <to-view-id>/Avon/Listar/listarAvon.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <!-- Regras de Navegação TextoBoleto -->
+    
+    
+    <navigation-rule>
+        <from-view-id>/Boleto/TextoBoleto/listarTextoBoleto.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>criarTextoBoleto</from-outcome>
+            <to-view-id>/Boleto/TextoBoleto/cadastrarTextoBoleto.xhtml</to-view-id>
+        </navigation-case>        
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/Boleto/TextoBoleto/listarTextoBoleto.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>editarTextoBoleto</from-outcome>
+            <to-view-id>/Boleto/TextoBoleto/editarTextoBoleto.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/Boleto/TextoBoleto/cadastrarTextoBoleto.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>listarTextoBoleto</from-outcome>
+            <to-view-id>/Boleto/TextoBoleto/listarTextoBoleto.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/Boleto/TextoBoleto/editarTextoBoleto.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>listarTextoBoleto</from-outcome>
+            <to-view-id>/Boleto/TextoBoleto/listarTextoBoleto.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/Boleto/TextoBoleto/selecionarTextoBoleto.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>listarAvon</from-outcome>
+            <to-view-id>/Boleto/Avon/Listar/listarAvon.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <!-- Regras de Navegação InstrucaoBoleto -->
+    
+    
+    <navigation-rule>
+        <from-view-id>/Boleto/InstrucaoBoleto/listarInstrucaoBoleto.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>criarInstrucaoBoleto</from-outcome>
+            <to-view-id>/Boleto/InstrucaoBoleto/cadastrarInstrucaoBoleto.xhtml</to-view-id>
+        </navigation-case>        
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/Boleto/InstrucaoBoleto/listarInstrucaoBoleto.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>editarInstrucaoBoleto</from-outcome>
+            <to-view-id>/Boleto/InstrucaoBoleto/editarInstrucaoBoleto.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/Boleto/InstrucaoBoleto/cadastrarInstrucaoBoleto.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>listarInstrucaoBoleto</from-outcome>
+            <to-view-id>/Boleto/InstrucaoBoleto/listarInstrucaoBoleto.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/Boleto/InstrucaoBoleto/editarInstrucaoBoleto.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>listarInstrucaoBoleto</from-outcome>
+            <to-view-id>/Boleto/InstrucaoBoleto/listarInstrucaoBoleto.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/Boleto/InstrucaoBoleto/selecionarInstrucaoBoleto.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>listarAvon</from-outcome>
+            <to-view-id>/Boleto/Avon/Listar/listarAvon.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <!-- Regras de Navegação TemplateBoleto -->
+    
+    
+    <navigation-rule>
+        <from-view-id>/Boleto/TemplateBoleto/listarTemplateBoleto.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>criarTemplateBoleto</from-outcome>
+            <to-view-id>/Boleto/TemplateBoleto/cadastrarTemplateBoleto.xhtml</to-view-id>
+        </navigation-case>        
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/Boleto/TemplateBoleto/listarTemplateBoleto.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>editarTemplateBoleto</from-outcome>
+            <to-view-id>/Boleto/TemplateBoleto/editarTemplateBoleto.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/Boleto/TemplateBoleto/cadastrarTemplateBoleto.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>listarTemplateBoleto</from-outcome>
+            <to-view-id>/Boleto/TemplateBoleto/listarTemplateBoleto.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/Boleto/TemplateBoleto/editarTemplateBoleto.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>listarTemplateBoleto</from-outcome>
+            <to-view-id>/Boleto/TemplateBoleto/listarTemplateBoleto.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/Boleto/TemplateBoleto/selecionarTemplateBoleto.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>listarAvon</from-outcome>
+            <to-view-id>/Boleto/Avon/Listar/listarAvon.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    
+    <!-- Regras de Navegação Boleto -->
+    
+    
+    <navigation-rule>
+        <from-view-id>/Boleto/listarBoleto.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>criarBoleto</from-outcome>
+            <to-view-id>/Boleto/cadastrarBoleto.xhtml</to-view-id>
+        </navigation-case>        
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/Boleto/listarBoleto.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>criarBoleto</from-outcome>
+            <to-view-id>/Boleto/cadastrarBoleto.xhtml</to-view-id>
+        </navigation-case>        
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/Avon/formularioAvon.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>criarBoleto</from-outcome>
+            <to-view-id>/Boleto/cadastrarBoleto.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/Boleto/cadastrarBoleto.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>listarBoleto</from-outcome>
+            <to-view-id>/Boleto/listarBoleto.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/Boleto/cadastrarBoleto.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>salvarBoleto2</from-outcome>
+            <to-view-id>/Boleto/cadastrarBoleto2.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/Boleto/editarBoleto.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>listarBoleto</from-outcome>
+            <to-view-id>/Boleto/listarBoleto.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/Boleto/cadastrarBoleto.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>visualizarBoleto</from-outcome>
+            <to-view-id>/Boleto/visualizarBoleto.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/Boleto/selecionarBoleto.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>listarAvon</from-outcome>
+            <to-view-id>/Boleto/Avon/Listar/listarAvon.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+</faces-config>

@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jstl/core">
+    <body>
+        <table jsfc="h:dataTable" value='#{caixaitempadraoManager.listarCaixaItemPadrao}' var='caixaitempadrao' border="1" cellpadding="2" cellspacing="0">
+            <td jsfc="h:column">
+                <f:facet name="header">
+                    <h:outputText value="ID"/>
+                </f:facet>
+                #{caixaitempadrao.idcaixaitempadrao}
+            </td>
+            <td jsfc="h:column">
+                <f:facet name="header">
+                    <h:outputText value="Nome"/>
+                </f:facet>
+                #{caixaitempadrao.nome}
+            </td>
+            <td jsfc="h:column">
+                <f:facet name="header">
+                    <h:outputText value="Descricao"/>
+                </f:facet>
+                #{caixaitempadrao.descricao}
+            </td>
+            <td jsfc="h:column">
+                <h:commandLink action="#{caixaitempadraoManager.criarCaixaItem}" > 
+                    Criar CaixaItem
+                    <f:param name="id" value="#{caixaitempadrao.idcaixaitempadrao}"/>
+                </h:commandLink>
+            </td>
+        </table>
+    </body>
+</html>
+

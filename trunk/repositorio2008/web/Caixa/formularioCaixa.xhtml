@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+    <body>
+        <ui:composition template="/Templates/templateCentroCaixa.xhtml">
+            <ui:define name="conteudo">
+                <h:form>
+                    <h2>Informacao do Caixa Nº #{caixaManager.caixa.idcaixa}</h2>
+                    
+                    <rich:panel style="width:700px">
+                        <f:facet name="header">Caixa Nº #{caixaManager.caixa.idcaixa}, Data #{caixaManager.caixa.data_caixa}</f:facet>
+                        <rich:datascroller align="left"  for="listaCaixa" maxPages="20"/>
+                        <rich:spacer height="30" />
+                        <rich:dataTable value='#{caixaitemManager.listarCaixaItemporCaixa}' var='caixaItem' border="1" cellpadding="2" cellspacing="0" onRowMouseOver="this.style.backgroundColor='#F1F1F1'"
+                                        onRowMouseOut="this.style.backgroundColor='#{a4jSkin.tableBackgroundColor}'" rows="10" id="listaCaixa">
+                            <rich:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Id CaixaItem"/>
+                                </f:facet>
+                                #{caixaitem.idcaixaitem}
+                            </rich:column>
+                            <rich:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Valor em Cheque"/>
+                                </f:facet>
+                                #{caixaitem.valorch}
+                            </rich:column>
+                            <rich:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Valor em Dinheiro"/>
+                                </f:facet>
+                                #{caixaitem.valordin}
+                            </rich:column>
+                            <rich:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Entrada / Saida"/>
+                                </f:facet>
+                                #{caixaitem.tipo}
+                            </rich:column>
+                            <rich:column>
+                                <f:facet name="header">Opcoes </f:facet>
+                                <h:commandLink action="#{caixaManager.listarCaixaItemporCaixa}" > 
+                                    Ver Caixa
+                                    <f:param name="id" value="#{caixa.idcaixa}"/>
+                                </h:commandLink>
+                            </rich:column>
+                        </rich:dataTable>
+                        
+                        <h:outputLink value="#" id="linkdois">                                       
+                            Novo Item Entrada                           
+                            <rich:componentControl for="panel" attachTo="linkdois" operation="show" event="onclick"/>                                        
+                        </h:outputLink>
+                        
+                        <h:commandLink action="#{caixaManager.criarCaixaItemSaida}" > 
+                            Novo Item Saida
+                            <rich:componentControl for="panel" attachTo="linkdois" operation="show" event="onclick"/>    
+                        </h:commandLink>
+                        
+                        <f:subview>
+                            <a4j:keepAlive beanName="caixaManager" />
+                            <rich:modalPanel id="panel" width="350" height="100">                            
+                                <f:facet name="header">                                
+                                    <h:panelGroup>                                    
+                                        <h:outputText value="Cadastrar nova Entrada no Caixa"></h:outputText>                                    
+                                    </h:panelGroup>                                
+                                </f:facet>                            
+                                <f:facet name="controls">                                
+                                    <h:panelGroup>                                    
+                                        <h:graphicImage value="/img/excluir.png" style="cursor:pointer" id="hidelink"/>                                    
+                                        <rich:componentControl for="panel" attachTo="hidelink" operation="hide" event="onclick"/>                                    
+                                    </h:panelGroup>                                
+                                </f:facet> 
+                                <h3>Valor em Dinheiro</h3>
+                                <h:inputText value="#{caixaitemManager.caixaItem.valordin}" />
+                                <h3>Valor em Cheque</h3>
+                                <h:inputText value="#{caixaitemManager.caixaItem.valorch}" />
+                                <h3>Descrição</h3>
+                                <h:inputText value="#{caixaitemManager.caixaItem.descricao}" />
+                                <br /><br />
+                                <a4j:commandButton action="#{caixaitemManager.salvarCaixaItem}" value="Cadastrar" id="botaoCadastrar">
+                                    <rich:componentControl for="panel" attachTo="botaoCadastrar" operation="hide" event="onclick"/>
+                                </a4j:commandButton>
+                            </rich:modalPanel>  
+                        </f:subview>
+                    </rich:panel>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>
+

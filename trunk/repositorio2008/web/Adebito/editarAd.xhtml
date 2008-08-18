@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jstl/core">
+    <body>        
+        <form id="form" jsfc="h:form">
+            <table>
+                <tr>
+                    <td colspan="2">Editar Ad</td>
+                </tr>
+                <tr> 
+                    <td>Aviso da avon</td>
+                    <td>#{adManager.ad.avon.aviso}
+                    </td>
+                </tr>
+                <tr> 
+                    <td>Nome avon</td>
+                    <td>#{adManager.ad.avon.nome}
+                    </td>
+                </tr>
+                <tr> 
+                    <td>Aviso debito</td>
+                    <td><input jsfc="h:inputText" id="nome" value="#{adManager.ad.avisodebito}"  /></td>
+                </tr>
+                <tr> 
+                    <td>Aviso debito</td>
+                        <td><h:inputText id="valor" value="#{adManager.ad.valordebitoatual}">
+                                <f:convertNumber type="currency"/>
+                            </h:inputText>
+                        </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td><h:commandButton value="salvar" action="#{adManager.atualizarAd}" /></td>
+                </tr>
+            </table>
+        </form>
+    </body>    
+</html>
+

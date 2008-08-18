@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jstl/core">
+    <body>
+        <h:form>
+            <h2>Cadastros Caixa Itens com Caixa</h2>
+            <h:commandLink action="#{caixaitemManager.criarCaixaItem}" value="Cadastrar outra">
+                <h:graphicImage id="editar" url="/img/novo.png" border="0" />
+            </h:commandLink>
+            <table jsfc="h:dataTable" value='#{caixaitemManager.listarCaixaItemporCaixa}' var='caixaitem' border="1" cellpadding="2" cellspacing="0">
+                <td jsfc="h:column">
+                    <f:facet name="header">
+                        <h:outputText value="ID"/>
+                    </f:facet>
+                    #{caixaitem.idcaixaitem}
+                </td>
+                <td jsfc="h:column">
+                    <f:facet name="header">
+                        <h:outputText value="Valor Cheque"/>
+                    </f:facet>
+                    #{caixaitem.valorch}
+                </td>
+                <td jsfc="h:column">
+                    <f:facet name="header">
+                        <h:outputText value="Valor Dinheiro"/>
+                    </f:facet>
+                    #{caixaitem.valordin}
+                </td>
+                
+                <td jsfc="h:column">
+                    <f:facet name="header">
+                        <h:outputText value="Entrada?"/>
+                    </f:facet>
+                    #{caixaitem.tipo}
+                </td>
+                 <td jsfc="h:column">
+                    <h:commandLink action="#{caixaitemManager.editarCaixaItem}">
+                        <h:graphicImage id="editar" url="/img/editar.png" border="0" />
+                        <f:param name="id" value="#{caixaitem.idcaixaitem}"/>
+                    </h:commandLink>
+                    <h:outputText value=" "/>
+                    <h:commandLink action="#{caixaitemManager.excluirCaixaItem}" onclick="javascript:if (!confirm('Deseja excluir este registro?')) return false;"> 
+                        <h:graphicImage id="excluir" url="/img/excluir.png" border="0" />
+                        <f:param name="id" value="#{caixaitem.idcaixaitem}"/>
+                    </h:commandLink>
+                </td>
+            </table>
+        </h:form> 
+        <br/>
+            <br/>
+            <a href="../Caixa/listarCaixa.jsf">listar Caixa</a>
+            <a href="../">voltar</a>
+    </body>
+</html>
+
