@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:ajax="https://ajax4jsf.dev.java.net/ajax">
+    <body>
+        
+        <ui:composition template="/Templates/templateCentroCobrador.xhtml">
+            <ui:define name="barra">
+                <ui:include src="/Cobrador/menuSuperiorListarAvisosCobrador.xhtml"/>
+            </ui:define>
+            <ui:define name="conteudo">
+                <h:form id="formAJAX" >
+                    <rich:panel style="width:750px">
+                        <h:graphicImage id="imprimir" value="/img/imprimir2.gif" height="25" width="25" /> 
+                        <h:outputLink value="/SistemCopal2008/relatorio?classe=avon#{avonManager.urlRelatorio}pesquisa=relcobrador#{avonManager.urlRelatorio}p1=#{avonManager.nomeCobrador}#{avonManager.urlRelatorio}p2=#{avonManager.statusA}" style="font-size: 15px">Imprimir Relação</h:outputLink>
+                        <f:facet name="header">Relacao de pagamentos por cobradores </f:facet>
+                        <h:panelGrid columsn="2">
+                            <h:panelGroup>
+                                <fieldset title="Informações Avisos" >
+                                    <legend style="color: blue; font-family: arial, helvetica, serif; font-size: 14px;">Informações Avisos</legend>
+                                    
+                                    <rich:datascroller align="left"  for="listaAviso" maxPages="40"/>
+                                    <rich:spacer height="30"/>
+                                    <rich:dataTable value='#{avonManager.listarPorStatusCobrador}' var='aviso' border="1" cellpadding="2" cellspacing="0" onRowMouseOver="this.style.backgroundColor='#F1F1F1'"
+                                                    onRowMouseOut="this.style.backgroundColor='#{a4jSkin.tableBackgroundColor}'" rows="40" id="listaAviso">
+                                        
+                                        <rich:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Aviso"/>
+                                            </f:facet>
+                                            #{aviso.aviso}
+                                        </rich:column>
+                                        <rich:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Nome"/>
+                                            </f:facet>
+                                            #{aviso.nome}
+                                        </rich:column>   
+                                        <rich:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Visualizar"/>
+                                            </f:facet>
+                                            <h:commandButton  action="#{avonManager.visualizarIraja}" value="Visualizar"> 
+                                                <f:param name="id" value="#{aviso.aviso}"/>
+                                            </h:commandButton>
+                                        </rich:column>
+                                        <rich:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Marcar"/>
+                                            </f:facet>                                            
+                                            <h:selectOneRadio value="#{aviso.statusaviso}">                                                
+                                                <f:selectItem itemValue="A" itemDescription="Agencia" itemLabel="Agencia" />
+                                                <f:selectItem itemValue="M" itemDescription="Em mãos" itemLabel="Em mãos" />
+                                                <f:selectItem itemValue="E" itemDescription="Esperando" itemLabel="Esperando" />
+                                            </h:selectOneRadio>
+                                        </rich:column>  
+                                        <rich:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Salvar"/>
+                                            </f:facet>
+                                            <h:commandButton  action="#{avonManager.salvarStatus}" value="Salvar"> 
+                                                <f:param name="id" value="#{aviso.aviso}"/>
+                                            </h:commandButton>
+                                        </rich:column> 
+                                    </rich:dataTable>
+                                </fieldset>
+                                <fieldset>
+                                    <h:commandButton action="#{avonManager.salvarVariosStatus}" value="Salvar Todos"/>
+                                </fieldset>
+                            </h:panelGroup>
+                        </h:panelGrid>
+                    </rich:panel>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>
+

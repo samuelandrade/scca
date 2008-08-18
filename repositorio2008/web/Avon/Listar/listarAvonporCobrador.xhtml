@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+    <body>
+        <ui:composition template="/Templates/templateCentroAvon.xhtml">
+            <ui:define name="conteudo"> 
+                <h:form>
+                    <rich:panel style="width:700px" >
+                        <f:facet name="header">Pesquisa por cobrador </f:facet>
+                        <h:inputText  value="#{avonManager.nome}"/>
+                        <a4j:commandLink   reRender="lista" value="Pesquisar"/> 
+                    </rich:panel>
+                </h:form>
+                <h:form>
+                    <rich:panel style="width:700px" id="lista">
+                        <f:facet name="header">Cadastros Avon </f:facet>
+                        <h:commandLink action="#{avonManager.criarAvon}" value="Cadastrar outra">
+                            <h:graphicImage id="editar" url="/img/novo.png" border="0" />
+                        </h:commandLink>
+                        <rich:datascroller align="left"  for="listaAvon" maxPages="20"/>
+                        <rich:spacer height="30" />
+                        <rich:dataTable value='#{avonManager.listarAvonPorCobrador}' var='avon' border="1" cellpadding="2" cellspacing="0" onRowMouseOver="this.style.backgroundColor='#F1F1F1'"
+                                        onRowMouseOut="this.style.backgroundColor='#{a4jSkin.tableBackgroundColor}'" rows="10" id="listaAvon">
+                            <rich:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Aviso"/>
+                                </f:facet>
+                                #{avon.aviso}
+                            </rich:column>
+                            <rich:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Cidade"/>
+                                </f:facet>
+                                #{avon.cidade}
+                            </rich:column>
+                            <rich:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Nome"/>
+                                </f:facet>
+                                #{avon.nome}
+                            </rich:column>
+                            <rich:column>
+                                <f:facet name="header">Opcoes </f:facet>                               
+                                
+                                
+                                <h:commandLink action="#{avonManager.visualizarAvon}" > 
+                                    Visualizar
+                                    <f:param name="id" value="#{avon.aviso}"/>
+                                </h:commandLink>
+                                <h:commandLink action="#{avonManager.selecionarCobrador}" > 
+                                    Escolher Cobrador
+                                    <f:param name="id" value="#{avon.aviso}"/>
+                                </h:commandLink>
+                            </rich:column>
+                            
+                        </rich:dataTable>
+                        
+                    </rich:panel>
+                </h:form> 
+                <br/>
+                <br/>
+                <a href="../">voltar</a>
+                <a href="../Adebito/listarAd.jsf">Listar ad</a>
+           </ui:define>
+        </ui:composition>
+    </body>
+</html>
+

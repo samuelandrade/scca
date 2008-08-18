@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+    <body>
+        <ui:composition template="/Templates/templateCentroAvon.xhtml">
+            <ui:define name="conteudo">
+                <f:view>
+                    <rich:panel id="panel1" style="width:700px">
+                        <f:facet name="header">
+                            formulario avon
+                        </f:facet>
+                        <h:form id="form1">
+                            <!--<ui:include src="menuSuperiorOpcoesAvon.xhtml"/>-->
+                            <rich:toolBar height="34" itemSeparator="line"> 
+                                <rich:toolBarGroup >
+                                    
+                                    <h:graphicImage id="visual" value="/img/detalhe.png"  /> 
+                                    <h:commandButton  action="visualizarAvon" value="Visualizar">
+                                        <!--<h:outputLabel value="Visualizar" for="visual" /> -->
+                                    </h:commandButton> 
+                                </rich:toolBarGroup>
+                                <rich:toolBarGroup>       
+                                    <h:graphicImage id="edit" value="/img/editar.png" />
+                                    <h:commandButton action="editarAvon" value="Editar">
+                                        <!--<h:outputLabel value="Editar" for="edit" /> -->  
+                                    </h:commandButton> 
+                                </rich:toolBarGroup>                              
+                                <rich:toolBarGroup>                    
+                                    <h:graphicImage id="salvar" value="/img/salvar.gif" />
+                                    <h:commandButton action="#{avonManager.atualizarAvon}" onclick="javascript:if (!confirm('Deseja salvar estas alteracoes??')) return false;" value="Salvar">                         
+                                        <!--<h:outputLabel value="Salvar" for="salvar" />  -->                        
+                                    </h:commandButton>     
+                                    
+                                </rich:toolBarGroup>
+                                <rich:toolBarGroup>
+                                    <h:graphicImage id="apagar" value="/img/excluir.png" />                    
+                                    <h:commandLink action="#{avonManager.excluirAvon}" onclick="javascript:if (!confirm('Deseja excluir este registro?')) return false;">                         
+                                        <h:outputLabel value="Excluir" for="apagar" />                    
+                                        
+                                    </h:commandLink>
+                                </rich:toolBarGroup>
+                                <rich:toolBarGroup>
+                                    <h:graphicImage id="imprimir" value="/img/imprimir2.gif" height="25" width="25" />                    
+                                    <h:outputLabel value="Imprimir" for="imprimir" />                  
+                                    
+                                </rich:toolBarGroup>                
+                            </rich:toolBar> 
+                            <h:panelGrid columns="3">
+                                <h:panelGroup>
+                                    <h:outputText value="AVISO" style="font-size: 20px;"/>  <br/>
+                                    <h:outputText id="avisoAvon" value="#{avonManager.avon.aviso}" style="font-size: 20px;padding-left:1em;" /> 
+                                </h:panelGroup>
+                                <h:panelGroup >
+                                    
+                                        <h:outputText style="font-size: 20px;padding-left:5em;" value="Negociador"/> <br/>
+                                        <h:outputText id="negociadorAvon" value="#{avonManager.avon.cobrador.nome}" style="color:red;font-size: 20px;padding-left:5em;"/> 
+                                        <h:outputLink value="#" id="link">                                        
+                                            Associar negociador                                         
+                                            <rich:componentControl for="panel" attachTo="link" operation="show" event="onclick"/>                                        
+                                        </h:outputLink>
+                                    
+                                </h:panelGroup>
+                                <h:panelGroup >
+                                    
+                                        <h:outputText value="Situacao" style="font-size: 20px;padding-left:5em;" /> <br/>
+                                        <c:when test="#{avonManager.avon.situacaocb.nomeSituacao != null}">
+                                          
+                                        <h:outputText id="situacaoAvon" value="#{avonManager.avon.situacaocb.nomeSituacao}" style="color:red;padding-left:5em; font-size: 20px;"/> 
+                                        <h:outputLink value="#" id="linksit">                                        
+                                            Associar situacao                                         
+                                            <rich:componentControl for="panelsit" attachTo="linksit" operation="show" event="onclick"/>                                        
+                                        </h:outputLink></c:when>
+                                    
+                                </h:panelGroup>
+                            </h:panelGrid>
+                            
+                            
+                            
+                            
+                            <h:panelGrid columns="2">
+                                <h:panelGroup>
+                                    <fieldset title="Informações Avon" >
+                                        <legend style="color: blue; font-family: arial, helvetica, serif; font-size: 14px;">Informações Aviso</legend>
+                                        <h:panelGrid columns="3">
+                                            <h:panelGroup style="padding-right:3em">
+                                                Setor<br/>
+                                                <h:outputText id="setorAvon" value="#{avonManager.avon.setor}" />                                                                                
+                                            </h:panelGroup>
+                                            <h:panelGroup style="padding-right:3em ">
+                                                Registro<br/>
+                                                <h:outputText id="registroAvon" value="#{avonManager.avon.registro}" />
+                                            </h:panelGroup>
+                                            <h:panelGroup style="padding-right:3em">
+                                                Asc<br/>
+                                                <h:outputText id="ascAvon" value="#{avonManager.avon.asc2}" />
+                                            </h:panelGroup>
+                                        </h:panelGrid>
+                                    </fieldset>
+                                </h:panelGroup>
+                                <h:panelGroup>
+                                    <fieldset title="Informações Remessa" >
+                                        <legend style="color: blue; font-family: arial, helvetica, serif; font-size: 14px;">Informações Remessa</legend>
+                                        <h:panelGrid columns="2">
+                                            <h:panelGroup style="padding-right:3em">
+                                                Data remessa:<br/>
+                                                <rich:calendar value="#{avonManager.avon.dataenvio}" datePattern="dd/MM/yyyy" cellWidth="10" disabled="true" />                                                                                
+                                            </h:panelGroup>
+                                            <h:panelGroup style="padding-right:3em">
+                                                Data devolução:<br/>
+                                                <rich:calendar value="#{avonManager.avon.datadevolucao}" datePattern="dd/MM/yyyy" cellWidth="10" disabled="true" />                                                                                
+                                            </h:panelGroup>
+                                        </h:panelGrid>
+                                    </fieldset>
+                                </h:panelGroup>
+                            </h:panelGrid>
+                            <fieldset title="Informações Cadastro" >
+                                <legend style="color: blue; font-family: arial, helvetica, serif; font-size: 14px;">Informações Revendedora</legend>
+                                <h:panelGrid columns="2">
+                                    <h:panelGroup style="padding-right:30em">
+                                        Nome:<br/>
+                                        <h:inputText id="nomeAvon" value="#{avonManager.avon.nome}" size="70"/>
+                                    </h:panelGroup>
+                                    <h:panelGroup style="padding-right:3em">
+                                        Apelido:<br/>
+                                        <h:inputText id="apelidoAvon" value="#{avonManager.avon.apelido}"/>
+                                    </h:panelGroup>
+                                </h:panelGrid >
+                                <h:panelGrid columns="3">
+                                    <h:panelGroup style="padding-right:3em">
+                                        Rg:<br/>
+                                        <h:inputText id="rgAvon" value="#{avonManager.avon.rg}"/>
+                                    </h:panelGroup>
+                                    <h:panelGroup style="padding-right:3em">
+                                        Cpf:<br/>
+                                        <h:inputText id="cpfAvon" value="#{avonManager.avon.cpf}"/>
+                                    </h:panelGroup>
+                                    <h:panelGroup style="padding-right:3em">
+                                        Data nascimento:<br/>
+                                        <rich:calendar value="#{avonManager.avon.nascimento}" datePattern="dd/MM/yyyy" cellWidth="10" />
+                                    </h:panelGroup>
+                                </h:panelGrid>
+                            </fieldset>
+                            
+                            <fieldset title="Informações Endereço" >
+                                <legend style="color: blue; font-family: arial, helvetica, serif; font-size: 14px;">Informações Endereço</legend>
+                                <h:panelGrid columns="1">
+                                    <h:panelGroup>
+                                        ENDERECO:
+                                        <br/>
+                                        <h:inputText id="enderecoAvon" value="#{avonManager.avon.endereco}" size="100"/>
+                                    </h:panelGroup>
+                                </h:panelGrid>
+                                <h:panelGrid columns="3">
+                                    <h:panelGroup style="padding-right:3em">
+                                        NÚMERO:<br/>
+                                        <h:inputText id="numeroAvon" value="#{avonManager.avon.numerocasa}"/>
+                                    </h:panelGroup>
+                                    <h:panelGroup style="padding-right:3em">
+                                        BAIRRO:<br/>
+                                        <h:inputText id="bairroAvon" value="#{avonManager.avon.bairro}"/>
+                                    </h:panelGroup>
+                                    <h:panelGroup style="padding-right:3em">
+                                        CIDADE:<br/>                            
+                                        <h:inputText id="cidadeAvon" value="#{avonManager.avon.cidade}" />
+                                    </h:panelGroup>
+                                </h:panelGrid>
+                                <h:panelGrid columns="3">
+                                    <h:panelGroup style="padding-right:3em">
+                                        UF:<br/>                            
+                                        <h:inputText id="ufAvon" value="#{avonManager.avon.uf}" />
+                                    </h:panelGroup>
+                                    <h:panelGroup style="padding-right:3em">
+                                        DDD:<br/>                            
+                                        <h:inputText id="dddAvon" value="#{avonManager.avon.ddd}"/>
+                                    </h:panelGroup>
+                                    <h:panelGroup style="padding-right:3em">
+                                        FONE:<br/>                            
+                                        <h:inputText id="foneAvon" value="#{avonManager.avon.fone}"/>
+                                    </h:panelGroup>
+                                </h:panelGrid>
+                            </fieldset>
+                            <fieldset>
+                                <h:panelGrid columns="1">
+                                    <h:panelGroup>
+                                        Status Aviso:
+                                        <br/>                                        
+                                        <h:selectOneRadio value="#{avonManager.avon.statusaviso}">
+                                            <f:selectItem itemValue="A" itemDescription="Agencia" itemLabel="Agencia" />
+                                            <f:selectItem itemValue="M" itemDescription="Em mãos" itemLabel="Em mãos" />
+                                            <f:selectItem itemValue="E" itemDescription="Esperando" itemLabel="Esperando" />
+                                        </h:selectOneRadio>
+                                    </h:panelGroup>
+                                </h:panelGrid>
+                            </fieldset>
+                            <br/>
+                            <br/>
+                            <c:forEach  items="#{avonManager.listaAdManager}" var="ad" varStatus="status">
+                                <rich:panel>
+                                    <f:facet name="header">
+                                        <h:outputText value="Ad nº #{ad.avisodebito}"/>
+                                    </f:facet> 
+                                    <h:panelGrid columns="3">
+                                        <h:panelGroup style="padding-right:3em">
+                                            Data do ad:<br/>
+                                            <h:outputText value="#{ad.dataad}">
+                                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                            </h:outputText>
+                                        </h:panelGroup>
+                                        <h:panelGroup style="padding-right:3em">
+                                            CP:<br/>
+                                            <h:outputText value="#{ad.cp}"/>
+                                        </h:panelGroup>
+                                        <h:panelGroup style="padding-right:3em">
+                                            Valor remessa:<br/>
+                                            <h:outputText value="#{ad.valordebito}">
+                                                <f:convertNumber type="currency"/>
+                                            </h:outputText>
+                                        </h:panelGroup>
+                                    </h:panelGrid>
+                                    <h:panelGrid columns="2">
+                                        <h:panelGroup style="padding-right:3em">
+                                            Nº AD:<br/>
+                                            <h:outputText value="#{ad.avisodebito}"/>
+                                        </h:panelGroup>
+                                        <h:panelGroup style="padding-right:3em">
+                                            Data nota fiscal:<br/>
+                                            <rich:calendar value="#{ad.datanf}" datePattern="dd/MM/yyyy" cellWidth="10" disabled="true" /> 
+                                        </h:panelGroup>
+                                    </h:panelGrid>                                    
+                                </rich:panel> 
+                                <br/>
+                            </c:forEach>
+                    <f:subview>
+                        <a4j:keepAlive beanName="cobradorManager" />
+                        <rich:modalPanel id="panel" width="350" height="500">                            
+                            <f:facet name="header">                                
+                                <h:panelGroup>                                    
+                                    <h:outputText value="Escolha o negociador"></h:outputText>                                    
+                                </h:panelGroup>                                
+                            </f:facet>                            
+                            <f:facet name="controls">                                
+                                <h:panelGroup>                                    
+                                    <h:graphicImage value="/img/excluir.png" style="cursor:pointer" id="hidelink"/>                                    
+                                    <rich:componentControl for="panel" attachTo="hidelink" operation="hide" event="onclick"/>                                    
+                                </h:panelGroup>                                
+                            </f:facet> 
+                            <rich:dataTable value="#{cobradorManager.listarCobrador}" var="cobrador" onRowMouseOver="this.style.backgroundColor='#F1F1F1'"
+                                            onRowMouseOut="this.style.backgroundColor='#{a4jSkin.tableBackgroundColor}'">
+                                <rich:column>
+                                    <f:facet name="header">
+                                        Nome
+                                    </f:facet>
+                                    #{cobrador.nome}
+                                </rich:column>
+                                <rich:column>
+                                    <f:facet name="header">
+                                        Opcoes
+                                    </f:facet>
+                                    <h:commandLink action="#{cobradorManager.selecionarCobrador}" > 
+                                        Escolher Cobrador
+                                    <f:param name="cobrador" value="#{cobrador}"/>
+                                        
+                                    </h:commandLink>
+                                </rich:column>
+                            </rich:dataTable>
+                          </rich:modalPanel>                        
+                      
+                    </f:subview>
+                    <f:subview>
+                        <a4j:keepAlive beanName="situacaoManager" />
+                        <rich:modalPanel id="panelsit" width="350" height="500">                            
+                            <f:facet name="header">                                
+                                <h:panelGroup>                                    
+                                    <h:outputText value="Escolha a situacao"></h:outputText>                                    
+                                </h:panelGroup>                                
+                            </f:facet>                            
+                            <f:facet name="controls">                                
+                                <h:panelGroup>                                    
+                                    <h:graphicImage value="/img/excluir.png" style="cursor:pointer" id="hidelink"/>                                    
+                                    <rich:componentControl for="panelsit" attachTo="hidelink" operation="hide" event="onclick"/>                                    
+                                </h:panelGroup>                                
+                            </f:facet> 
+                            <rich:dataTable value="#{situacaoManager.listarSituacao}" var="situacao" onRowMouseOver="this.style.backgroundColor='#F1F1F1'"
+                                            onRowMouseOut="this.style.backgroundColor='#{a4jSkin.tableBackgroundColor}'">
+                                <rich:column>
+                                    <f:facet name="header">
+                                        Nome
+                                    </f:facet>
+                                    #{situacao.nomeSituacao}
+                                </rich:column>
+                                <rich:column>
+                                    <f:facet name="header">
+                                        Descricao
+                                    </f:facet>
+                                    #{situacao.descricaoSituacao}
+                                </rich:column>
+                                <rich:column>
+                                    <f:facet name="header">
+                                        Opcoes
+                                    </f:facet>
+                                    <h:commandLink action="#{situacaoManager.selecionarSituacao}" > 
+                                        Escolher Situacao
+                                    <f:param name="situacao" value="#{situacao}"/>
+                                        
+                                    </h:commandLink>
+                                </rich:column>
+                            </rich:dataTable>
+                          </rich:modalPanel>                        
+                      
+                    </f:subview>
+                </h:form>
+                </rich:panel>
+                </f:view>
+                
+            </ui:define>
+        </ui:composition>
+        <a href="../Avon/listarAvon.jsf">Voltar</a>
+    </body>
+</html>
+

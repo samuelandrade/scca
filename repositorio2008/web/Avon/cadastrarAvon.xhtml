@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+    <body>
+        <f:view>
+       
+          <rich:panel style="width:300px">
+              <f:facet name="header">
+                  Cadastro AVON
+              </f:facet>
+            <h:form>
+              <table>
+                      <tr>
+                          <td>Nome:</td>
+                          <td><h:inputText value="#{avonManager.avon.nome}" required="true" /></td>
+                      </tr>
+                      <tr>
+                          <td>Bairro:</td>
+                          <td><h:inputText value="#{avonManager.avon.bairro}" required="true"/></td>
+                      </tr>
+                      <tr>
+                          <td>Endereco:</td>
+                          <td><h:inputTextarea value="#{avonManager.avon.endereco}" required="true"/></td>
+                      </tr>
+                      <tr>
+                          <td>Cidade:</td>
+                          <td><h:inputText value="#{avonManager.avon.cidade}" required="true"/></td>
+                      </tr>
+                      <tr>
+                          <td>Cep:</td>
+                          <td><h:inputText value="#{avonManager.avon.cep}" maxlength="9" required="true" /></td>
+                      </tr>
+                      <tr>
+                          <td>DDD:</td>
+                          <td><h:inputText value="#{avonManager.avon.ddd}" maxlength="2"/></td>
+                      </tr>
+                      <tr>
+                          <td>Fone:</td>
+                          <td><h:inputText value="#{avonManager.avon.fone}" maxlength="8"/></td>
+                      </tr> 
+               </table> 
+                <input type="submit" id="Botao" value="Cadastrar" name="fButton" jsfc="h:commandButton" action="#{avonManager.salvarAvon}" />
+             </h:form>   
+           </rich:panel>
+        </f:view>
+    </body>
+</html>
+

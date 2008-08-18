@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:ajax="https://ajax4jsf.dev.java.net/ajax">
+    <body>
+        <ui:composition template="/Templates/templateCentroCobrador.xhtml">
+            <ui:define name="barra">
+                <ui:include src="/Boleto/menuSuperiorFiltrarAvisosBoleto.xhtml"/>
+            </ui:define>
+            <ui:define name="conteudo">
+                <h:form id="formAJAX" >
+                    <rich:panel style="width:750px">
+                        <f:facet name="header">Relacao de Avisos </f:facet>
+                        <h:panelGrid columsn="2">
+                            <h:panelGroup>
+                                <fieldset title="Informações Avisos" >
+                                    <legend style="color: blue; font-family: arial, helvetica, serif; font-size: 14px;">Informações Avisos</legend>
+                                    
+                                    <rich:datascroller align="left"  for="listaAviso" maxPages="40"/>
+                                    <rich:spacer height="30"/>
+                                    <rich:dataTable value='#{boletoManager.listarPorFiltro}' var='aviso' border="1" cellpadding="2" cellspacing="0" onRowMouseOver="this.style.backgroundColor='#F1F1F1'"
+                                                    onRowMouseOut="this.style.backgroundColor='#{a4jSkin.tableBackgroundColor}'" rows="40" id="listaAviso">
+                                        
+                                        <rich:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Aviso"/>
+                                            </f:facet>
+                                            #{aviso.aviso}
+                                        </rich:column>
+                                        <rich:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Nome"/>
+                                            </f:facet>
+                                            #{aviso.nome}
+                                        </rich:column>
+                                        <rich:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Setor/reg/asc"/>
+                                            </f:facet>
+                                            #{aviso.setor}/#{aviso.registro}/#{aviso.asc2}
+                                        </rich:column>
+                                        <rich:column >
+                                            <f:facet name="header">
+                                                <h:outputText value="Marcar p/boleto"/>
+                                                
+                                            </f:facet>
+                                                    <h:selectBooleanCheckbox  >                                                      
+                                                        <a4j:support  action="#{boletoManager.Marcar}" event="onclick"/>                                                      
+                                                    </h:selectBooleanCheckbox>            
+                                        </rich:column>
+                                    </rich:dataTable>
+                                </fieldset>
+                                <fieldset>
+                                    <h:commandButton action="#{boletoManager.salvarAvisosBoleto}" value="Salvar Todos"/>
+                                </fieldset>
+                            </h:panelGroup>
+                        </h:panelGrid>
+                    </rich:panel>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>
+

@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jstl/core">
+    <body>
+        <h:form>
+            <h2>Selecione Cobrador</h2>
+            <table jsfc="h:dataTable" value='#{cobradorManager.listarCobrador}' var='cobrador' border="1" cellpadding="2" cellspacing="0">
+                <td jsfc="h:column">
+                    <f:facet name="header">
+                        <h:outputText value="Id do Cobrador"/>
+                    </f:facet>
+                    #{cobrador.idcobrador} 
+                </td>
+                <td jsfc="h:column">
+                    <f:facet name="header">
+                        <h:outputText value="Nome do Cobrador"/>
+                    </f:facet>
+                    #{cobrador.nome}
+                </td>
+                <td jsfc="h:column">
+                   <h:commandLink action="#{cobradorManager.selecionarCobrador}">
+                        Selecionar
+                        <f:param name="id" value="#{cobrador.idcobrador}"/>
+                    </h:commandLink>
+                </td>
+            </table>
+        </h:form> 
+        <br/>
+        <br/>
+        <a href="../">voltar</a>
+    </body>
+</html>
+

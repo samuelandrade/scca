@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <body>
+         <h:form>
+            <h3>Nome</h3>
+            <h:inputText value="#{caixaitempadraoManager.caixaItemPadrao.nome}" />
+            <h3>Descriçao</h3>
+            <h:inputText value="#{caixaitempadraoManager.caixaItemPadrao.descricao}" />
+            <h3>Entrada?</h3>
+            <h:selectBooleanCheckbox value="#{caixaitempadraoManager.caixaItemPadrao.tipo}" />
+            <br /><br />
+            <input type="submit" id="Botao" value="Cadastrar" name="fButton" jsfc="h:commandButton" action="#{caixaitempadraoManager.salvarCaixaItem}" />
+       </h:form>
+    </body>
+</html>
+

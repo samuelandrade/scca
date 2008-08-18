@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:h="http://java.sun.com/jsf/html"
+ xmlns:f="http://java.sun.com/jsf/core"
+>
+    <body>
+       <h:form>
+           <h4>Data do Caixa</h4>
+           <h:inputText value="#{caixaManager.caixa.data_caixa}">
+                <f:convertDateTime pattern="dd/mm/yyyy" />
+           </h:inputText>
+           <h4>Data do Ultimo Caixa</h4>
+           <h:inputText value="#{caixaManager.caixa.data_caixaant}" />
+           <h4>Id do Ultimo Caixa</h4>
+           <h:inputText value="#{caixaManager.caixa.idcaixaant}" />
+           <input type="submit" id="Botao" value="Cadastrar" name="fButton" jsfc="h:commandButton" action="#{caixaManager.salvarCaixa}" />
+       </h:form>
+    </body>
+</html>
+

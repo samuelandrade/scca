@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+    <body>
+        
+        <ui:composition template="/Templates/templateCentroCobrador.xhtml">
+            <ui:define name="conteudo">
+                <h:form>
+                    
+                    <rich:panel style="width:700px">
+                        <f:facet name="header">Relacao de Templates para boleto </f:facet>
+                        
+                        <h:commandLink action="#{templateBoletoManager.criarTemplateBoleto}" value="Cadastrar outra">
+                            <h:graphicImage id="editar" url="/img/novo.png" border="0" />
+                        </h:commandLink>
+                        
+                        <rich:datascroller align="left"  for="listaTemplateBoleto" maxPages="20"/>
+                        <rich:spacer height="30" />
+                        <rich:dataTable value='#{templateBoletoManager.listarTemplateBoleto}' var='templateB' border="1" cellpadding="2" cellspacing="0" onRowMouseOver="this.style.backgroundColor='#F1F1F1'"
+                                        onRowMouseOut="this.style.backgroundColor='#{a4jSkin.tableBackgroundColor}'" rows="10" id="listaTemplateBoleto">
+                            <rich:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Nome"/>
+                                </f:facet>                                     
+                                #{templateB.nometemplate}
+                            </rich:column>
+                            <rich:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Instruções"/>
+                                </f:facet>
+                                <c:forEach items="#{templateB.templateBoleto.instrucaoLista}" var="instrucaoB">
+                                    #{instrucaoB.descricao}
+                                </c:forEach>                                
+                            </rich:column>                          
+                            <rich:column>
+                                <f:facet name="header">Opcoes </f:facet>
+                                <h:outputText value=" "/>
+                                <h:commandLink action="#{templateBoletoManager.editarTemplateBoleto}"> 
+                                    <h:graphicImage id="editar" url="/img/editar.png" border="0" />
+                                    <f:param name="id" value="#{templateB.id}"/>
+                                </h:commandLink> 
+                                <h:commandLink action="#{templateBoletoManager.excluirTemplateBoleto}"> 
+                                    <h:graphicImage id="excluir" url="/img/excluir.png" border="0" />
+                                    <f:param name="id" value="#{templateB.id}"/>
+                                </h:commandLink> 
+                            </rich:column>
+                        </rich:dataTable>
+                        
+                        
+                    </rich:panel>
+                </h:form>
+        </ui:define>
+        </ui:composition>
+        
+    </body>
+</html>
+

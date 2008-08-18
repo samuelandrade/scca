@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="1.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
+  <persistence-unit name="copal2PU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.hibernate.ejb.HibernatePersistence</provider>
+    <class>br.com.copal.entity.Ad</class>
+    <class>br.com.copal.entity.Avon</class>
+    <class>br.com.copal.entity.Caixa</class>
+    <class>br.com.copal.entity.CaixaItem</class>
+    <class>br.com.copal.entity.CaixaItemPadrao</class>
+    <class>br.com.copal.entity.Cobrador</class>
+    <class>br.com.copal.entity.Pagamento</class>
+    <class>br.com.copal.entity.Situacao</class>
+    <class>br.com.copal.entity.InstrucaoBoleto</class>
+    <class>br.com.copal.entity.TextoBoleto</class>
+    <class>br.com.copal.entity.Boleto</class>
+    <class>br.com.copal.entity.TemplateBoleto</class>
+    <class>br.com.copal.entity.ParcelasBoleto</class>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <properties>
+      <property name="hibernate.connection.username" value="root"/>
+      <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+      <property name="hibernate.connection.password" value=""/>
+      <property name="hibernate.connection.url" value="jdbc:mysql://localhost/db_copalavon08?characterEncoding=UTF-8"/>
+      <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
+      <property name="hibernate.hbm2ddl.auto" value="update"/>
+    </properties>
+  </persistence-unit>
+</persistence>

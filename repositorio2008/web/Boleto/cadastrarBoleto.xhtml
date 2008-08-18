@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+    <body>
+        <ui:composition template="/Templates/templateCentroCobrador.xhtml">
+            <ui:define name="conteudo">
+                <h:form>
+                    <rich:panel style="width:700px">
+                        <f:facet name="header">Cadastro de grupo de boletos </f:facet>
+                        <fieldset>
+                            Nome do grupo:<h:inputText value="#{boletoManager.nomeGrupo}" /><br/>
+                            Data vencimento:<rich:calendar value="#{boletoManager.dataVencimentoGrupo}" /><br/>
+                            Template:<h:outputText value="#{templateBoletoManager.templateBoleto.textoboleto.descricao}"/>
+                            <h:outputLink value="#" id="linksit" style="color: blue; font-family: arial, helvetica, serif; font-size: 14px;">                                        
+                                Associar template                                        
+                                <rich:componentControl for="paneltemplate" attachTo="linksit" operation="show" event="onclick"/>                                        
+                            </h:outputLink>
+                        </fieldset>
+                        <h:commandButton action="#{boletoManager.cadastrarBoleto}"/>
+                    </rich:panel>
+                    <f:subview>
+                        <rich:modalPanel id="paneltemplate" width="350" height="500">                            
+                            <f:facet name="header">                                
+                                <h:panelGroup>                                    
+                                    <h:outputText value="Escolha o texto"></h:outputText>                                    
+                                </h:panelGroup>                                
+                            </f:facet>                            
+                            <f:facet name="controls">                                
+                                <h:panelGroup>                                    
+                                    <h:graphicImage value="/img/excluir.png" style="cursor:pointer" id="hidelink"/>                                    
+                                    <rich:componentControl for="paneltemplate" attachTo="hidelink" operation="hide" event="onclick"/>                                    
+                                </h:panelGroup>                                
+                            </f:facet>
+                            <rich:dataTable value="#{templateBoletoManager.listarTemplateBoleto}" var="template" onRowMouseOver="this.style.backgroundColor='#F1F1F1'"
+                                            onRowMouseOut="this.style.backgroundColor='#{a4jSkin.tableBackgroundColor}'">
+                                <rich:column>
+                                    <f:facet name="header">
+                                        Nome
+                                    </f:facet>
+                                    #{template.nometemplate}
+                                </rich:column>
+                                <rich:column>
+                                    <f:facet name="header">
+                                        Opcoes
+                                    </f:facet>
+                                    <h:commandLink action="#{templateBoletoManager.selecionarTemplateBoleto}" > 
+                                        Escolher Template 
+                                        <f:setPropertyActionListener value="#{templateBoletoManager.templateBoleto.id}" target="#{boletoManager.idTemplate}" />
+                                    </h:commandLink>
+                                </rich:column>
+                            </rich:dataTable>
+                        </rich:modalPanel>  
+                    </f:subview>
+                </h:form>
+                
+                <br/>
+                <br/>
+                <a href="../">voltar</a>
+                <a href="../Adebito/listarAd.jsf">Listar ad</a>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>
+

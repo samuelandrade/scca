@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+    <body>
+        <a4j:form ajaxSubmit="true" reRender="formAJAX">
+            <rich:panel style="width:700px" >
+                <f:facet name="header">Dados do grupo de boleto </f:facet>
+                <h:panelGrid columns="2">
+                        <h:panelGroup>
+                            Grupo:<h:inputText value="#{boletoManager.nomeGrupo}"/> 
+                        </h:panelGroup>
+                        <h:panelGroup>
+                            Data vencimento:<h:inputText value="#{boletoManager.dataVencimentoGrupo}">
+                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                            </h:inputText>
+                        </h:panelGroup>
+                    </h:panelGrid>
+            </rich:panel>
+            <rich:panel style="width:700px" > 
+                <f:facet name="header">Campos para filtragem </f:facet>
+                <fieldset>
+                    <h:panelGrid columns="2">
+                        <h:panelGroup>
+                            Cidade:<h:inputText value="#{boletoManager.cidadeAviso}"/> 
+                        </h:panelGroup>
+                        <h:panelGroup>
+                            Bairro:<h:inputText value="#{boletoManager.bairroAviso}"/> 
+                        </h:panelGroup>
+                    </h:panelGrid>
+                    <h:panelGrid columns="2">
+                        <h:panelGroup>
+                            Setor:<h:inputText value="#{boletoManager.setorAviso}"/> 
+                        </h:panelGroup>
+                        <h:panelGroup>
+                            Negociador:<h:inputText value="#{boletoManager.negociadorAviso}"/> 
+                        </h:panelGroup>
+                    </h:panelGrid>
+                    <h:panelGrid columns="2">
+                        <h:panelGroup>
+                            Situacao:<h:inputText value="#{boletoManager.situacaoAviso}"/> 
+                        </h:panelGroup>
+                        <h:panelGroup>
+                            Marca:<h:inputText value="#{boletoManager.marcaAviso}"/> 
+                        </h:panelGroup>
+                    </h:panelGrid>                    
+                    <a4j:commandLink value="Pesquisar" style="font-size: 15px"/>   
+                </fieldset>                        
+            </rich:panel>            
+        </a4j:form>
+    </body>
+</html>
+

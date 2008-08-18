@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+    <body>
+       <!-- <ui:composition template="/Templates/templateGeral.xhtml">
+            <ui:define name="menuLateral">-->
+                PROGRAMA COPAL <br/>
+                AVON               
+                
+              
+                <br/>
+                <br/>
+                
+                <rich:panelMenu style="width:110px"  mode="ajax" iconExpandedGroup="disc" iconCollapsedGroup="disc" 
+                                iconExpandedTopGroup="chevronUp" iconGroupTopPosition="right" 
+                                iconCollapsedTopGroup="chevronDown" iconCollapsedTopPosition="right" >
+                               <rich:panelMenuGroup label="Avon">
+                                    <rich:panelMenuItem>
+                                       <!--<a4j:commandLink reRender="centro" ajaxSingle="true" onclick="true">
+                                            <a4j:actionparam name="menuLateral" value="/SistemCopal2008/Templates/menuLateralGeral.xhtml" assignTo="#{navegadorPag.menuLateral}"/>
+                                            <a4j:actionparam name="conteudo" value="/SistemCopal2008/Avon/listarAvon.xhtml" assignTo="#{navegadorPag.centro}"/>ghjgh
+                                        </a4j:commandLink>-->
+                                        <a href="/SistemCopal2008/Avon/Listar/listarAvon.jsf">Tela avon</a>
+                                    </rich:panelMenuItem>
+                                    <rich:panelMenuItem>
+                                        <a href="/SistemCopal2008/Situacao/listarSituacao.jsf">Tela Situacao</a>                                        
+                                    </rich:panelMenuItem>
+                                    <rich:panelMenuItem>teste3</rich:panelMenuItem>
+                                    <rich:panelMenuItem>teste4</rich:panelMenuItem>
+                               </rich:panelMenuGroup> 
+                               <rich:panelMenuGroup label="Ad">
+                                    <rich:panelMenuItem>
+                                        <!--<a4j:commandLink reRender="centro" ajaxSingle="true" onclick="true">
+                                           <a4j:actionparam name="menuLateral" value="/SistemCopal2008/Templates/menuLateralGeral.xhtml" assignTo="#{navegadorPag.menuLateral}"/>
+                                            <a4j:actionparam name="conteudo" value="/SistemCopal2008/Ad/listarAd.xhtml" assignTo="#{navegadorPag.centro}"/>hjkhj
+                                        </a4j:commandLink>-->
+                                        <a href="/SistemCopal2008/Adebito/listarAd.jsf">Teste ad</a>
+                                    </rich:panelMenuItem>
+                                    <rich:panelMenuItem>teste2</rich:panelMenuItem>
+                                    <rich:panelMenuItem>teste3</rich:panelMenuItem>
+                                    <rich:panelMenuItem>teste4</rich:panelMenuItem>
+                               </rich:panelMenuGroup> 
+                               <rich:panelMenuGroup label="Pagamento">
+                                    <rich:panelMenuItem>
+                                        <a href="/SistemCopal2008/Pagamento/listarPagamento.jsf">Teste pagamento</a>
+                                    </rich:panelMenuItem>
+                                    <rich:panelMenuItem>teste2</rich:panelMenuItem>
+                                    <rich:panelMenuItem>teste3</rich:panelMenuItem>
+                                    <rich:panelMenuItem>teste4</rich:panelMenuItem>
+                               </rich:panelMenuGroup> 
+                               <rich:panelMenuGroup label="Boleto">
+                                    <rich:panelMenuItem>
+                                        <a href="/SistemCopal2008/Boleto/TextoBoleto/listarTextoBoleto.jsf">Tela Textos</a>
+                                    </rich:panelMenuItem>
+                                    <rich:panelMenuItem>
+                                        <a href="/SistemCopal2008/Boleto/InstrucaoBoleto/listarInstrucaoBoleto.jsf">Tela Instrucoes</a>
+                                    </rich:panelMenuItem>
+                                    <rich:panelMenuItem>
+                                        <a href="/SistemCopal2008/Boleto/TemplateBoleto/listarTemplateBoleto.jsf">Tela Templates</a>
+                                    </rich:panelMenuItem>
+                                    <rich:panelMenuItem>
+                                        <a href="/SistemCopal2008/Boleto/cadastrarBoleto.jsf">Cadastrar Boletos</a>                                        
+                                    </rich:panelMenuItem>
+                               </rich:panelMenuGroup>
+                               <rich:panelMenuGroup label="Cobrador">
+                                    <rich:panelMenuItem>
+                                        <a href="/SistemCopal2008/Cobrador/listarCobrador.jsf">Tela Cobrador</a>
+                                    </rich:panelMenuItem>
+                                    <rich:panelMenuItem>
+                                        <a href="/SistemCopal2008/Pagamento/Listar/listarPagamentosPorCobrador.jsf">Ver Pagamento</a>
+                                    </rich:panelMenuItem>
+                                    <rich:panelMenuItem>
+                                        <a href="/SistemCopal2008/Cobrador/Listar/listarAvisosCobrador.jsf">Lista de avisos</a>
+                                    </rich:panelMenuItem>
+                                    <rich:panelMenuItem>teste4</rich:panelMenuItem>
+                               </rich:panelMenuGroup>
+                               <rich:panelMenuGroup label="Remessa">
+                                    <rich:panelMenuItem>
+                                        <a href="/SistemCopal2008/Upload/atualizarBase.jsf">Atualizar</a>
+                                    </rich:panelMenuItem>
+                                    <rich:panelMenuItem>
+                                        <a href="/SistemCopal2008/FileUpload.html">Migrar Remessa</a>
+                                    </rich:panelMenuItem>
+                                    <rich:panelMenuItem>teste3</rich:panelMenuItem>
+                                    <rich:panelMenuItem>teste4</rich:panelMenuItem>
+                               </rich:panelMenuGroup>
+                                    
+                </rich:panelMenu>
+          <!--</ui:define>
+        </ui:composition>-->
+    </body>
+</html>
+
